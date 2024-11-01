@@ -5,6 +5,12 @@ import { AppError } from "../utils/AppError"
 export class UserControllers{
 
     async index(req: Request, res: Response){
-        throw new AppError("Erro de pegar")
+        
+        res.status(200).json()
+    }
+
+    async create(req: Request, res: Response){
+        
+        res.status(201).json()
     }
 }

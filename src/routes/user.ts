@@ -2,10 +2,11 @@
 import { Router } from "express"
 import { UserControllers } from "../controllers/UserControllers"
 
-const routes = Router()
+const userRoutes = Router()
 const userControllers = new UserControllers()
 
-routes.get("/", userControllers.index)
+userRoutes.get("/", userControllers.index)
+userRoutes.post("/user", userControllers.create)
 
 
-export { routes }
+export { userRoutes }

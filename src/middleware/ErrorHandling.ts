@@ -6,6 +6,7 @@ import { ZodError } from "zod"
 
 
 
+
 export function ErrorHandling(err: any, req: Request, res: Response, next: NextFunction){
 
     if(err instanceof AppError){

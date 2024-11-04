@@ -2,6 +2,7 @@
 import { Request, Response, NextFunction } from "express"
 import { AppError } from "../utils/AppError"
 import { prisma } from "../../prisma/prisma"
+import { hash } from "bcrypt"
 import z from "zod"
 
 export class UserControllers{
@@ -18,14 +19,15 @@ export class UserControllers{
         
         const bodySchema = z.object({
             name: z.string(),
-            email: z.string().trim().min(6),
+            email: z.string().trim().min(6).email(),
             password: z.string().trim().min(6),
             role: z.string()
         })
 
         bodySchema.parse(req.body)
+        const hashedPassword = await hash(password, 8)
 
-        await prisma.user.create({data: { name, email, password, role }}) 
+        await prisma.user.create({data: { name, email, password: hashedPassword,  role }}) 
 
         res.status(201).json()
     }

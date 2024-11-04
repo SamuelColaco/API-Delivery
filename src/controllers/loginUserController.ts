@@ -24,6 +24,6 @@ export class LoginUserController{
             subject: user?.id
         })
 
-        res.status(200).json( user )
+        res.status(200).json( { user: user, token: token} )
     }
 }

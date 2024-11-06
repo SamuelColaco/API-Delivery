@@ -9,14 +9,14 @@ import z from "zod"
 
 export class LoginUserController{
 
-    async index(req: Request, res: Response){
+    async create(req: Request, res: Response){
 
         const { email, password } = req.body
 
 
         const bodySchema = z.object({
             email: z.string().email(),
-            pasword: z.string().trim().min(6)
+            password: z.string().trim().min(6)
         })
 
         bodySchema.parse(req.body)
@@ -26,8 +26,9 @@ export class LoginUserController{
         if(!user){
             throw new AppError("Usuário não existe")
         }
+        
+        const passwordMatch = await compare(password, user.password)
 
-        const passwordMatch = await compare(password, user?.password)
 
         if(!passwordMatch){
             throw new AppError("Senha ou E-mail errado")

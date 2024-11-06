@@ -12,8 +12,8 @@ const app = express()
 
 app.use(express.json())
 app.use(userRoutes)
-app.use(deliveryRoutes)
 app.use(loginUserRoute)
+app.use(deliveryRoutes)
 
 app.use(ErrorHandling)
 

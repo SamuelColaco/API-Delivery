@@ -11,18 +11,25 @@ interface TokenPayload{
 
 export function ensureAuthenticated(req: Request, res: Response, next: NextFunction){
 
-    const authHeader = req.headers.authorization?.slice(7)
 
-    if(!authHeader){
-        throw new AppError("JWT token não dito")
+    try {
+        const authHeader = req.headers.authorization?.slice(7)
+
+        if(!authHeader){
+            throw new AppError("JWT token não dito")
+        }
+    
+        const { role, sub: user_id} = verify(authHeader, authConfig.jwt.secret) as TokenPayload
+    
+        req.user = {
+            id: user_id,
+            role
+        }
+
+        return next()
+    } catch (error) {
+        throw new AppError("JWT não é valido")
     }
 
-    const { role, sub: user_id} = verify(authHeader, authConfig.jwt.secret) as TokenPayload
-
-    req.user = {
-        id: user_id,
-        role
-    }
-
-    return next()
+    
 }

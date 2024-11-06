@@ -20,3 +20,4 @@ export function ErrorHandling(err: any, req: Request, res: Response, next: NextF
     res.status(500).json({ message: "Erro interno do servidor"})
 
 }
+

@@ -27,7 +27,7 @@ export class UserControllers{
         bodySchema.parse(req.body)
         const hashedPassword = await hash(password, 8)
 
-        await prisma.user.create({data: { name, email, password: hashedPassword,  role }}) 
+        await prisma.user.create({data: { name, email, password: hashedPassword, role }}) 
 
         res.status(201).json()
     }

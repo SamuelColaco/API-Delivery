@@ -40,6 +40,8 @@ export class LoginUserController{
             subject: user?.id
         })
 
-        res.status(200).json( { user: user, token: token } )
+        const { password: hashed, ...userWithoutPassword} = user
+
+        res.status(200).json( { user: userWithoutPassword, token: token } )
     }
 }

@@ -11,5 +11,6 @@ deliveryRoutes.use(ensureAuthenticated, verifyUserAuthorization(["sale"]))
 
 deliveryRoutes.get("/delivery",  deliveryController.index)
 deliveryRoutes.post("/delivery/:userId", deliveryController.create)
+deliveryRoutes.patch("/delivery/:id/status", deliveryController.update)
 
 export { deliveryRoutes }

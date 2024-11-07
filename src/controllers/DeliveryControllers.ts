@@ -7,7 +7,7 @@ import { AppError } from "../utils/AppError"
 export class DeliveryController{
     async index(req: Request, res: Response){
 
-        const Delivery = await prisma.delivery.findMany()
+        const Delivery = await prisma.delivery.findMany({include: { user: { select:{name: true, email: true }}}})
 
         res.status(200).json(Delivery.length > 0 ? Delivery : "Não tinha delivery")
     }
@@ -23,7 +23,6 @@ export class DeliveryController{
         })
 
 
-
         bodySchema.parse(req.body)
 
         const userExist = await prisma.user.findUnique({where: { id: userId  }})
@@ -36,5 +35,28 @@ export class DeliveryController{
         
 
         res.status(201).json()
+    }
+
+    async update(req: Request, res: Response){
+
+        const { status } = req.body
+
+        const { id } = req.params
+
+        const bodySchema = z.object({
+            status: z.enum([ "processing", "shipped", "delivered"])
+        })
+
+        const paramSchema = z.object({
+            id: z.string().uuid()
+        })
+
+        paramSchema.parse(req.params)
+        
+        bodySchema.parse(req.body)
+
+        await prisma.delivery.update({ where: { id }, data: { status }})
+
+        res.status(200).json()
     }
 }

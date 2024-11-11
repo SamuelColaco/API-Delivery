@@ -38,6 +38,10 @@ export class DeliveryLogsController{
          throw new AppError("Esse delivery não existe")
       }
 
+      if(delivery.description === "delivered"){
+         throw new AppError("Esse delivery já foi entregue")
+      }
+
       if(delivery.description === "processing"){
          throw new AppError("O status tem que ser shipped")
       }

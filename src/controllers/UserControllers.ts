@@ -1,7 +1,7 @@
 
 import { Request, Response, NextFunction } from "express"
 import { AppError } from "../utils/AppError"
-import { prisma } from "../../prisma/prisma"
+import { prisma } from "../prisma"
 import { hash } from "bcrypt"
 import z from "zod"
 

@@ -2,10 +2,9 @@
 
 import express from "express";
 import { app } from "./app";
-
-const PORT = 3333
-
+import { env } from "./env";
 
 
 
-app.listen(PORT, () => console.log(`O server na porta ${PORT} está rodando`))
+
+app.listen(env.PORT, () => console.log(`O server na porta ${env.PORT} está rodando`))

@@ -1,6 +1,6 @@
 
 import {Request, Response } from "express"
-import { prisma } from "../../prisma/prisma"
+import { prisma } from "../prisma"
 import { sign } from "jsonwebtoken"
 import { AppError } from "../utils/AppError"
 import { authConfig } from "../config/auth"

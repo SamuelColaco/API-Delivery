@@ -10,7 +10,7 @@
     "dev": "tsx watch --env-file .env ./src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node ./build/server.js",
-    "test": "jest --watchAll --detectOpenHandles"
+    "test": "jest --detectOpenHandles"
   },
   "keywords": [],
   "author": "",

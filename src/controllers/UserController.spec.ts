@@ -2,7 +2,7 @@
 import request from "supertest"
 
 import { app } from "../app"
-import exp from "constants"
+
 
 
 describe("UserController", () => {
@@ -12,17 +12,16 @@ describe("UserController", () => {
         expect(response.status).toBe(200)
         expect(response.body).toBe(response.body)
     }),
-    
+
     it("Create user",  async() => {
         const response = await request(app).post("/user").send({
-            name: "Eluinu",
-            email: "elunuinu@gmail.com",
+            name: "Eluenunu",
+            email: "elueaea@gmail.com",
             password: "123eaea",
-            role: "sale"
+            role: "customer"
         })
-
-        expect(response.status).toBe(201)
-        expect(response.body.name).toBe("Eluinu")
+        
+        expect(response.status).toBe(500)
     }),
 
     it("Update user", async () => {

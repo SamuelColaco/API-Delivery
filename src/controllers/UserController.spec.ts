@@ -21,7 +21,7 @@ describe("UserController", () => {
             role: "customer"
         })
         
-        expect(response.status).toBe(500)
+        expect(response.status).toBe(201)
     }),
 
     it("Update user", async () => {
